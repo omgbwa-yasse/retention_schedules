@@ -1,1 +1,1 @@
-# african_retention_schedule
+# African retention schedule
