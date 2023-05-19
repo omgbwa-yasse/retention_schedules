@@ -1,45 +1,37 @@
+<?php
+include_once 'app/controllers/home.controller.php';
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+  session_start();
+}
+
+if (isset($_SESSION['username'])) {
+  header('Location: index.php?q=home');
+  exit();
+}
+
+if (isset($_POST['login'])) {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  if ($username == 'admin' && $password == 'secret'){
+    $_SESSION['username'] = $username;
+    header('Location: index.php?q=home');
+    exit();
+  } else {
+    echo 'Invalid username or password';
+  }
+}
+?>
 <html>
-<title></title>
 <head>
-    <ol>
-        <li>Classification</li>
-            <ol>
-                <li>Gestion</li> 
-                <li>recherche</li>
-                <li>Export</li>   
-            </ol>
-        <li>Thesaurus</li>
-            <ol>
-                <li>Gestion termes</li> 
-                <li>recherche des termes</li>
-                <li>Export termes</li>   
-            </ol>
-        <li>Typologie</li>
-            <ol>
-                <li>Gestion des types</li> 
-                <li>recherche des types</li>
-                <li>export</li>   
-            </ol>
-        <li>Acces</li>
-            <ol>
-                <li>Gestion des acces</li> 
-                <li>recherche</li>
-                <li>export</li>   
-            </ol>
-        <li>Delai conservation</li>
-            <ol>
-                <li>Gestion des délais actifs</li>
-                <li>Gestion des délais semi</li> 
-                <li>Sort</li>     
-            </ol>
-        <li>Référence</li>
-            <ol>
-                <li>Gestion des references</li>
-                <li>recherche</li> 
-                <li>Télécharger</li>     
-            </ol>
-
-    </ol>
+  <title>Login</title>
 </head>
+<body>
+  <h1>Login</h1>
+  <form method="post" action="index.php">
+    <p>Username: <input type="text" name="username"></p>
+    <p>Password: <input type="password" name="password"></p>
+    <p><input type="submit" name="login" value="Login"></p>
+  </form>
+</body>
 </html>
-

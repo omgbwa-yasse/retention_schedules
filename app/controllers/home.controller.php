@@ -15,6 +15,8 @@ if(isset($_GET['q'])){
         break;
         case 'setting': include 'app/controlers/setting.controler.php';
         break;
+        case 'home': include 'app/views/home.php';
+        break;
         default : include 'app/controlers/classification.controler.php';
     }
 }
